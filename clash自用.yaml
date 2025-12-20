@@ -1,0 +1,13 @@
+proxies:
+  - type: vless
+    name: 手动-US美国-红领巾
+    server: 8.8.247.95
+    port: 20074
+    uuid: ea338728-f028-492a-802d-85b4898b8ec2
+    tls: true
+    servername: yahoo.com
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: WHi5DQIYarQQ1PG4SW7g0tdf6r_5drSFveR16hqeDng
+      short-id: 74
+    network: tcp
