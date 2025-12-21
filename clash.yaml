@@ -1,28 +1,28 @@
 proxy-providers:
   合租机场:
-    type: http
+    输入: http
     url: https://subscribe.952100.xyz/s/fc1585c5d3c9ed301ecca6a2283fe3ba
     interval: 3600
   亏本机场:
-    type: http
+    输入: http
     url: https://knjc.cfd/api/v1/client/subscribe?token=1bcf5a0aec6dfa06bf73cfc6ffbd1463
     interval: 3600
   极速机场:
-    type: http
+    输入: http
     url: https://jsjc.cfd/api/v1/client/subscribe?token=afb432215e8049436a4a14359fcf988d
     interval: 3600
   泡泡DOG:
-    type: http
+    输入: http
     url: https://times1756722889.subxiandan.top:9604/v2b/paopaogou/api/v1/client/subscribe?token=31ac53fe3637dc14d0a0f7b0f522ebed
     interval: 3600
   CF节点:
-    type: http
+    输入: http
     url: https://url.v1.mk/sub?target=clash&url=https%3A%2F%2Fclash.030429.dpdns.org%2Fwanxin%2Fsub&insert=false&config=https%3A%2F%2Fraw.githubusercontent.com%2FbyJoey%2Ftest%2Frefs%2Fheads%2Fmain%2Ftist.ini&emoji=true&list=false&xudp=false&udp=false&tfo=false&expand=true&scv=false&fdn=false&new_name=true
     interval: 3600
     
 proxy-groups:
   - name: ALL
-    type: select
+    输入: select
     use:
-      - a
-      - b
+      - 合租机场
+      - 亏本机场
