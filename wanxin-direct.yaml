@@ -1,4 +1,4 @@
-##红领巾的自用直连规则
+##红领巾的自用直连规则12.23
 ##	DOMAIN - 完整域名匹配
 ##	DOMAIN-SUFFIX - 域名后缀匹配
 ##	DOMAIN-KEYWORD - 域名关键词匹配
@@ -13,3 +13,4 @@ payload:
   - DOMAIN-KEYWORD,bilibili
   - DOMAIN-KEYWORD,nga
   - DOMAIN-SUFFIX,jsdelivr.net
+  - DOMAIN-SUFFIX,
