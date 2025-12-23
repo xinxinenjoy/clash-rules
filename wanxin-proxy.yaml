@@ -1,28 +1,14 @@
-play
-domain:chatgpt.com,
-domain:openai.com,  
-domain:chat.openai.com,
-domain:oaiusercontent.com,
-domain:auth.openai.com,
-domain:platform.openai.com,
-domain:oaistatic.com,
-domain:oaiusercontent.com,
-domain:anthropic.com,
-domain:claude.ai,
-domain:perplexity.ai,
-domain:gemini.google.com,
-domain:ai.google,
-domain:makersuite.google.com,
-domain:copilot.microsoft.com,
-domain:bing.com,
-domain:bingapis.com,
-domain:huggingface.co,
-domain:hf.co,
-domain:mistral.ai,
-domain:stability.ai,
-domain:poe.com,
-domain:quora.com,
-domain:meta.ai,
-domain:x.ai,
-domain:x.com,
-domain:twitter.com
+##红领巾的自用直连规则
+##	DOMAIN - 完整域名匹配
+##	DOMAIN-SUFFIX - 域名后缀匹配
+##	DOMAIN-KEYWORD - 域名关键词匹配
+##	GEOSITE - 地理站点匹配
+##	IP-CIDR - IP 地址段匹配
+##	GEOIP - 地理 IP 匹配
+##	DST-PORT - 目标端口匹配
+##	PROCESS-NAME - 进程名匹配
+##	AND - 多条件同时满足
+#payload:
+#  - DOMAIN-SUFFIX,030429.xyz
+#  - DOMAIN-KEYWORD,bilibili
+#  - DOMAIN-KEYWORD,nga
