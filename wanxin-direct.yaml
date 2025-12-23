@@ -12,5 +12,4 @@ payload:
   - DOMAIN-SUFFIX,030429.xyz
   - DOMAIN-KEYWORD,bilibili
   - DOMAIN-KEYWORD,nga
-  - DOMAIN-SUFFIX,jsdelivr.net
   - DOMAIN-SUFFIX,health-100.cn
