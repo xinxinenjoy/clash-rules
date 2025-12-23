@@ -13,3 +13,17 @@ payload:
   - DOMAIN-KEYWORD,bilibili
   - DOMAIN-KEYWORD,nga
   - DOMAIN-SUFFIX,health-100.cn
+  - DOMAIN-SUFFIX,360.cn
+  - DOMAIN-SUFFIX,alidns.com
+  - DOMAIN-SUFFIX,baidu.com
+  - DOMAIN-SUFFIX,dns.360.cn
+  - DOMAIN-SUFFIX,dns.alidns.com
+  - DOMAIN-SUFFIX,dns.baidu.com
+  - DOMAIN-SUFFIX,dnspod.cn
+  - DOMAIN-SUFFIX,dnspod.com
+  - DOMAIN-SUFFIX,doh.alidns.com
+  - DOMAIN-SUFFIX,doh.baidu.com
+  - DOMAIN-SUFFIX,doh.onedns.net
+  - DOMAIN-SUFFIX,doh.pub
+  - DOMAIN-SUFFIX,dot.pub
+  - DOMAIN-SUFFIX,onedns.net
