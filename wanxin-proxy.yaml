@@ -10,3 +10,6 @@
 ##	AND - 多条件同时满足
 payload:
   - DOMAIN-SUFFIX,clashverge.dev
+  - DOMAIN-SUFFIX,cloudflare-dns.com
+  - DOMAIN-SUFFIX,dns.google
+  - DOMAIN-SUFFIX,quad9.net
