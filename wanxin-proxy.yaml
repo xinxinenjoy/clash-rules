@@ -9,3 +9,4 @@
 ##	PROCESS-NAME - 进程名匹配
 ##	AND - 多条件同时满足
 payload:
+  - DOMAIN-SUFFIX,959597.xyz
