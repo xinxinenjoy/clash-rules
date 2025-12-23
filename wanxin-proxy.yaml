@@ -8,7 +8,5 @@
 ##	DST-PORT - 目标端口匹配
 ##	PROCESS-NAME - 进程名匹配
 ##	AND - 多条件同时满足
-#payload:
-#  - DOMAIN-SUFFIX,030429.xyz
-#  - DOMAIN-KEYWORD,bilibili
-#  - DOMAIN-KEYWORD,nga
+payload:
+  - DOMAIN-SUFFIX,clashverge.dev
