@@ -1,0 +1,5 @@
+##红领巾的自用直连规则
+payload:
+  - DOMAIN-SUFFIX,030429.xyz
+  - DOMAIN-KEYWORD:bilibili,
+  - DOMAIN-KEYWORD:nga,
