@@ -1,5 +1,14 @@
 ##红领巾的自用直连规则
+##	DOMAIN - 完整域名匹配
+##	DOMAIN-SUFFIX - 域名后缀匹配
+##	DOMAIN-KEYWORD - 域名关键词匹配
+##	GEOSITE - 地理站点匹配
+##	IP-CIDR - IP 地址段匹配
+##	GEOIP - 地理 IP 匹配
+##	DST-PORT - 目标端口匹配
+##	PROCESS-NAME - 进程名匹配
+##	AND - 多条件同时满足
 payload:
   - DOMAIN-SUFFIX,030429.xyz
-  - DOMAIN-KEYWORD:bilibili,
-  - DOMAIN-KEYWORD:nga,
+  - DOMAIN-KEYWORD:bilibili
+  - DOMAIN-KEYWORD:nga
