@@ -10,3 +10,5 @@
 ##	AND - 多条件同时满足
 payload:
   - DOMAIN-SUFFIX,959597.xyz
+  - DOMAIN-SUFFIX,simplesvg.com
+  - DOMAIN-SUFFIX,unisvg.com
