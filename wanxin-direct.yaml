@@ -10,6 +10,7 @@
 ##	AND - 多条件同时满足
 payload:
   - DOMAIN-SUFFIX,030429.xyz
+  - DOMAIN-SUFFIX,030429.dpdns.org
   - DOMAIN-KEYWORD,wahaha
   - DOMAIN-KEYWORD,20232024
   - DOMAIN-KEYWORD,linzixuan,DIRECT
