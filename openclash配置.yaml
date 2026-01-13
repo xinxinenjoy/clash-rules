@@ -1,0 +1,350 @@
+# OpenClash 完整配置
+redir-port: 7892
+tproxy-port: 7893
+
+allow-lan: true
+mode: rule
+log-level: error
+ipv6: false
+udp: true
+
+# DNS（OpenClash 安全）
+dns:
+  enable: true
+  listen: 0.0.0.0:7874
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+  use-system-hosts: false
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - "*.arpa"
+    - "time.*"
+    - "ntp.*"
+    - "*.qq.com"
+    - "*.wechat.com"
+    - "*.weixin.qq.com"
+    - "*.tencent.com"
+    - "*.msftncsi.com"
+    - "www.msftconnecttest.com"
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  fallback:
+    - https://dns.alidns.com/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+
+# 代理订阅（保留 additional-prefix）
+proxy-providers:
+
+  订阅名称1:
+    type: http
+    interval: 3000
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 1000
+    url: "https://subscribe-me.952100.xyz/s/d2b2d1b259c7daf2b9e6c2f08fdca4b6"
+    override:
+      additional-prefix: "前缀1"
+
+  订阅名称2:
+    type: http
+    interval: 3000
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 1000
+    url: "https://subscribe.952100.xyz/s/fc1585c5d3c9ed301ecca6a2283fe3ba"
+    override:
+      additional-prefix: "前缀2"
+
+  订阅名称3:
+    type: http
+    interval: 3000
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 1000
+    url: "https://knjc.cfd/api/v1/client/subscribe?token=1bcf5a0aec6dfa06bf73cfc6ffbd1463"
+    override:
+      additional-prefix: "前缀3"
+
+  订阅名称4:
+    type: http
+    interval: 3000
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 1000
+    url: "https://jsjc.cfd/api/v1/client/subscribe?token=afb432215e8049436a4a14359fcf988d"
+    override:
+      additional-prefix: "前缀4"
+
+  订阅名称5:
+    输入: http
+    interval: 3000
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 1000
+    url: "https://times1756722889.subxiandan.top:9604/v2b/paopaogou/api/v1/client/subscribe?token=31ac53fe3637dc14d0a0f7b0f522ebed"
+    override:
+      additional-prefix: "前缀5"
+
+  订阅名称6:
+    输入: http
+    interval: 3000
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 1000
+    url: "https://url.v1.mk/sub?target=clash&url=https%3A%2F%2Fclash.030429.dpdns.org%2Fwanxin%2Fsub&expand=true&new_name=true"
+    override:
+      additional-prefix: "前缀6"
+
+# 代理分组（完整）
+proxy-groups:
+  - name: 手动选择
+    输入: select
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Social_Media/LiveJournal.png
+    proxies: [自动兜底, 直连访问, HK香港, US美国, SG新加坡, JP日本, TW台湾, KR韩国, UK英国, DE德国, FR法国, CA加拿大, AU澳大利亚]
+
+  - name: 自动兜底
+    输入: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 80
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Loop.png
+    proxies: [HK香港, US美国, SG新加坡, JP日本, TW台湾, KR韩国, UK英国, DE德国, FR法国, CA加拿大, AU澳大利亚]
+
+  - name: ChatGPT
+    输入: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ChatGPT.png
+    proxies: [US美国, UK英国, DE德国, FR法国, CA加拿大, AU澳大利亚]
+
+  - name: Telegram
+    输入: select
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Social_Media/Telegram.png
+    proxies: [自动兜底, 直连访问, 手动选择, HK香港, US美国, SG新加坡, JP日本, TW台湾, KR韩国, UK英国, DE德国, FR法国, CA加拿大, AU澳大利亚]
+
+  - name: GitHub
+    输入: select
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Social_Media/GitHub.png
+    proxies: [自动兜底, 直连访问, 手动选择, HK香港, US美国, SG新加坡, JP日本, TW台湾, KR韩国, UK英国, DE德国, FR法国, CA加拿大, AU澳大利亚]
+
+  - name: 谷歌服务
+    输入: select
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Google_Suite/Google.png
+    proxies: [自动兜底, 直连访问, 手动选择, HK香港, US美国, SG新加坡, JP日本, TW台湾, KR韩国, UK英国, DE德国, FR法国, CA加拿大, AU澳大利亚]
+
+  - name: YouTuBe
+    输入: select
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Google_Suite/YouTube.png
+    proxies: [自动兜底, 直连访问, 手动选择, HK香港, US美国, SG新加坡, JP日本, TW台湾, KR韩国, UK英国, DE德国, FR法国, CA加拿大, AU澳大利亚]
+
+  - name: Game游戏
+    输入: select
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Universal/Game.png
+    proxies: [自动兜底, 直连访问, 手动选择, HK香港, US美国, SG新加坡, JP日本, TW台湾, KR韩国, UK英国, DE德国, FR法国, CA加拿大, AU澳大利亚]
+
+  - name: DNS服务
+    输入: select
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Google_Suite/Browser.png
+    proxies: [自动兜底, 直连访问, 手动选择, HK香港, US美国, SG新加坡, JP日本, TW台湾, KR韩国, UK英国, DE德国, FR法国, CA加拿大, AU澳大利亚]
+
+  - name: 最终MACH
+    输入: select
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Google_Suite/Admin.png
+    proxies: [自动兜底, 直连访问, 手动选择, HK香港, US美国, SG新加坡, JP日本, TW台湾, KR韩国, UK英国, DE德国, FR法国, CA加拿大, AU澳大利亚]
+
+# 国家节点分组（include-all）
+  - name: HK香港
+    输入: url-test
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 80
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Hong_Kong.png
+    filter: '^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇭🇰|香港|hk|HK|HKG|HongKong|Hong-Kong|Hong_Kong).*'
+
+  - name: US美国
+    输入: select
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 80
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/United_States.png
+    filter: '^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|us|US|USA|United-States|United_States|UnitedStates).*'
+
+  - name: SG新加坡
+    输入: url-test
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 80
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Singapore.png
+    filter: '^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇸🇬|新加坡|狮|sg|SG|Singapore).*'
+
+  - name: JP日本
+    输入: url-test
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 80
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Japan.png
+    filter: '^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇯🇵|日本|川日|东京|大阪|泉日|埼|jp|JP|Japan).*'
+
+  - name: TW台湾
+    输入: url-test
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 80
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Taiwan.png
+    filter: '^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇹🇼|台湾|台灣|tw|TW|Taiwan).*'
+
+  - name: KR韩国
+    输入: url-test
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 80
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/South_Korea.png
+    filter: '^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇰🇷|韩国|韓|首尔|kr|KR|Korea).*'
+
+  - name: UK英国
+    输入: url-test
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 80
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/United_Kingdom.png
+    filter: '^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇬🇧|英国|uk|UK|UnitedKingdom|United-Kingdom|United_Kingdom).*'
+
+  - name: DE德国
+    输入: url-test
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 80
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Germany.png
+    filter: '^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇩🇪|德国|德國|de|DE|Germany).*'
+
+  - name: FR法国
+    输入: url-test
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 80
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/France.png
+    filter: '^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇫🇷|法国|法國|fr|FR|France).*'
+
+  - name: CA加拿大
+    输入: url-test
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 80
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Canada.png
+    filter: '^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇨🇦|加拿大|ca|CA|Canada).*'
+
+  - name: AU澳大利亚
+    输入: url-test
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 80
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Australia.png
+    filter: '^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇦🇺|澳大利亚|澳洲|au|AU|Australia).*'
+
+  - name: CN中国
+    输入: url-test
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 80
+    icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/cn.svg
+    filter: '^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇨🇳|CN|中国|China|大陆|内地).*'
+
+  - name: 其他节点
+    输入: select
+    include-all: true
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Google_Suite/Drive.png
+    filter: '^(?!.*(?:香港|HK|Hong Kong|剩余|套餐|美国|US|United States|新加坡|SG|Singapore|日本|JP|Japan|台湾|TW|Taiwan|韩国|KR|Korea|英国|UK|United Kingdom|德国|DE|Germany|法国|FR|France|加拿大|CA|Canada|澳大利亚|AU|Australia)).*'
+
+  - name: 直连访问
+    输入: select
+    icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Google_Suite/Photos.png
+    proxies: [DIRECT]
+
+# 规则订阅
+rule-providers:
+  wanxin-direct:
+    输入: http
+    behavior: classical
+    interval: 18000
+    url: https://raw.githubusercontent.com/xinxinenjoy/clash-rules/refs/heads/main/wanxin-direct.yaml
+
+  wanxin-proxy:
+    输入: http
+    behavior: classical
+    interval: 18000
+    url: https://raw.githubusercontent.com/xinxinenjoy/clash-rules/refs/heads/main/wanxin-proxy.yaml
+
+  Loyalsoldier-direct:
+    输入: http
+    behavior: domain
+    interval: 18000
+    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt
+
+  Loyalsoldier-proxy:
+    输入: http
+    behavior: domain
+    interval: 18000
+    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
+
+  Loyalsoldier-reject:
+    输入: http
+    behavior: domain
+    interval: 18000
+    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
+
+rules:
+  - GEOIP,lan,直连访问,no-resolve
+  - GEOSITE,private,直连访问
+  - RULE-SET,wanxin-direct,直连访问
+  - RULE-SET,wanxin-proxy,手动选择
+  - DOMAIN-SUFFIX,clashverge.dev,手动选择
+  - DOMAIN-SUFFIX,cloudflare-dns.com,DNS服务
+  - DOMAIN-SUFFIX,dns.google,DNS服务
+  - DOMAIN-SUFFIX,quad9.net,DNS服务
+  - GEOSITE,openai,ChatGPT
+  - DOMAIN-SUFFIX,suno.ai,ChatGPT
+  - DOMAIN-KEYWORD,suno,ChatGPT
+  - GEOSITE,telegram,Telegram
+  - GEOSITE,github,GitHub
+  - GEOSITE,youtube,YouTuBe
+  - GEOSITE,google,谷歌服务
+  - RULE-SET,Loyalsoldier-reject,REJECT
+  - GEOSITE,category-ads-all,REJECT
+  - GEOIP,telegram,Telegram,no-resolve
+  - GEOIP,google,谷歌服务,no-resolve
+  - GEOIP,twitter,手动选择,no-resolve
+  - GEOIP,netflix,手动选择,no-resolve
+  - GEOIP,facebook,手动选择,no-resolve
+  - GEOSITE,cn,直连访问
+  - GEOSITE,category-games-cn,直连访问
+  - GEOSITE,category-games@cn,直连访问
+  - GEOSITE,category-game-platforms-download,直连访问
+  - GEOSITE,category-games,Game游戏
+  - RULE-SET,Loyalsoldier-direct,直连访问
+  - GEOIP,cn,直连访问,no-resolve
+  - RULE-SET,Loyalsoldier-proxy,手动选择
+  - GEOSITE,category-public-tracker,直连访问
+  - GEOSITE,category-pt,直连访问
+  - MATCH,最终MACH
