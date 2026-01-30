@@ -11,6 +11,7 @@
 payload:
   - DOMAIN-SUFFIX,030429.xyz
   - DOMAIN-SUFFIX,030429.dpdns.org
+  - DOMAIN-SUFFIX,hitokoto.cn
   - DOMAIN-KEYWORD,wahaha
   - DOMAIN-KEYWORD,20232024
   - DOMAIN-KEYWORD,linzixuan,DIRECT
