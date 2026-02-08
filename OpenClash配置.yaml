@@ -1,13 +1,11 @@
 # OpenClash 完整配置
 redir-port: 7892
 tproxy-port: 7895
-
 allow-lan: true
 mode: rule
 log-level: error
 ipv6: false
 udp: true
-
 # DNS（OpenClash 安全）
 dns:
   enable: true
@@ -22,6 +20,9 @@ dns:
     - "*.local"
     - "*.arpa"
     - "time.*"
+    - "*wahaha*"
+    - "*20232024*"
+    - "*xrg*"
     - "ntp.*"
     - "*.qq.com"
     - "*.wechat.com"
@@ -33,18 +34,12 @@ dns:
   nameserver:
     - 223.5.5.5
     - 119.29.29.29
-  fallback:
-    - https://dns.alidns.com/dns-query
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
   proxy-server-nameserver:
-  - 8.8.8.8
-  - 114.114.114.114
+    - 223.5.5.5
+    - 119.29.29.29
 
 # 代理订阅（保留 additional-prefix）
 proxy-providers:
-
   订阅名称1:
     输入: http
     interval: 3000
@@ -286,7 +281,7 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Google_Suite/Photos.png
     proxies: [DIRECT]
 
-# 规则订阅
+# 规则订阅这里是我自用的地址，改成你自己的
 rule-providers:
   wanxin-direct:
     输入: http
