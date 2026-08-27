@@ -1,0 +1,265 @@
+全局配置init: &init {type: http, interval: 3000, health-check: {enable: true, url: https://www.gstatic.com/generate_204, interval: 1000}}
+proxy-providers:
+  合租机场:
+    <<: *init
+    url: "https://subscribe.952100.xyz/s/fc1585c5d3c9ed301ecca6a2283fe3ba"
+    path: 配置/合租机场配置.yaml
+    override:
+      additional-prefix: "合租 |"
+  亏本机场:
+    <<: *init
+    url: "https://knjc.cfd/api/v1/client/subscribe?token=1bcf5a0aec6dfa06bf73cfc6ffbd1463"
+    path: 配置/亏本机场配置.yaml
+    override:
+      additional-prefix: "亏本 |"
+  极速机场:
+    <<: *init
+    url: "https://jsjc.cfd/api/v1/client/subscribe?token=afb432215e8049436a4a14359fcf988d"
+    path: 配置/极速机场配置.yaml
+    override:
+      additional-prefix: "极速 |"
+  泡泡DOG:
+    <<: *init
+    url: "https://times1756722889.subxiandan.top:9604/v2b/paopaogou/api/v1/client/subscribe?token=31ac53fe3637dc14d0a0f7b0f522ebed"
+    path: 配置/泡泡DOG配置.yaml
+    override:
+      additional-prefix: "泡泡 |"
+  CF节点:
+    <<: *init
+    url: "https://url.v1.mk/sub?target=clash&url=https%3A%2F%2Fclash.030429.dpdns.org%2Fwanxin%2Fsub&insert=false&config=https%3A%2F%2Fraw.githubusercontent.com%2FbyJoey%2Ftest%2Frefs%2Fheads%2Fmain%2Ftist.ini&emoji=true&list=false&xudp=false&udp=false&tfo=false&expand=true&scv=false&fdn=false&new_name=true"
+    path: 配置/CF节点配置.yaml
+    override:
+      additional-prefix: "CF |"
+
+proxies:
+  - type: 'vless'
+    name: '手动-美国-GPT'
+    server: '8.8.247.95'
+    port: 20074
+    uuid: 'ea338728-f028-492a-802d-85b4898b8ec2'
+    tls: true
+    servername: 'yahoo.com'
+    client-fingerprint: 'chrome'
+    reality-opts:
+      public-key: 'WHi5DQIYarQQ1PG4SW7g0tdf6r_5drSFveRi6hqeDhg'
+      short-id: '74'
+    network: 'tcp'
+
+
+mixed-port: 7890
+# redir-port: 7892
+# tproxy-port: 7893
+allow-lan: false
+bind-address: "*"
+mode: rule
+ipv6: false
+udp: true
+log-level: error
+external-controller: 0.0.0.0:9090
+external-ui: UI
+external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+
+geodata-mode: true
+geox-url:
+  geosite: "https://testingcf.jsdelivr.net/gh/v2fly/domain-list-community@release/dlc.dat"
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip-lite.dat"
+geo-auto-update: true
+geo-update-interval: 24
+
+profile:
+  store-selected: true #重置配置后的选择状态
+  store-fake-ip: false #fakeip存储模式
+
+tun:
+  enable: false
+  stack: gvisor
+  auto-route: true
+  strict-route: true #这里需要注意
+  auto-detect-interface: true
+  dns-hijack:
+  - any:53
+
+dns:
+  enable: true
+  listen: ':53'
+  ipv6: false
+  respect-rules: false
+  enhanced-mode: 'fake-ip'
+  fake-ip-range: '198.18.0.1/16'
+  fake-ip-filter-mode: 'blacklist'
+  prefer-h3: false
+  use-hosts: true
+  use-system-hosts: false
+  fake-ip-filter: 
+    - "*.lan"
+    - "*.local"
+    - '*.arpa'
+    - "time.*"
+    - "ntp.*"
+    - "*.wechat.com"
+    - "*.weixin.qq.com"
+    - "*.wx.qq.com"
+    - "*.qq.com"
+    - "*.qpic.cn"
+    - "*.gtimg.com"
+    - "*.tenpay.com"
+    - "*.tencent.com"
+    - "+.market.xiaomi.com"
+    - "localhost.ptlogin2.qq.com"
+    - "*.msftncsi.com"
+    - "www.msftconnecttest.com"
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  direct-nameserver:
+    - 223.5.5.5
+  proxy-server-nameserver:
+    - 8.8.8.8
+    - 114.114.114.114
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - https://dns.alidns.com/dns-query
+
+香港节点: &hk {filter: "^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(香港|HK|HongKong|Hong-Kong|Hong_Kong).*",icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Hong_Kong.png}
+美国节点: &us {filter: "^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(美国|US|USA|United-States|United_States|UnitedStates).*",icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/United_States.png}
+新国节点: &sg {filter: "^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(新加坡|SG|Singapore).*", icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Singapore.png}
+日本节点: &jp {filter: "^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(日本|JP|Japan).*",icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Japan.png}
+台湾节点: &tw {filter: "^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(台湾|台灣|TW|Taiwan).*",icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Taiwan.png}
+韩国节点: &kr {filter: "^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(韩国|韓國|KR|Korea).*",icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/South_Korea.png}
+英国节点: &uk {filter: "^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(英国|UK|UnitedKingdom|United-Kingdom|United_Kingdom).*",icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/United_Kingdom.png}
+德国节点: &de {filter: "^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(德国|德國|DE|Germany).*",icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Germany.png}
+法国节点: &fr {filter: "^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(法国|法國|FR|France).*",icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/France.png}
+加大节点: &ca {filter: "^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(加拿大|CA|Canada).*",icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Canada.png}
+澳大节点: &au {filter: "^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(澳大利亚|澳洲|AU|Australia).*",icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Australia.png}
+中国节点: &cn {filter: "^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇨🇳|CN|中国|China|大陆|内地).*",icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/cn.svg}
+其他节点: &qt {filter: "^(?:(?!香港|HK|Hong Kong|剩余|套餐|美国|US|United States|新加坡|SG|Singapore|日本|JP|Japan|台湾|TW|Taiwan|韩国|KR|Korea|英国|UK|United Kingdom|德国|DE|Germany|法国|FR|France|加拿大|CA|Canada|澳大利亚|AU|Australia).)*$", icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Google_Suite/Drive.png}
+
+图标AA: &icon_AA { icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Social_Media/Air_Bnb.png}
+图标BB: &icon_BB { icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Social_Media/Diaspora.png}
+图标CC: &icon_CC { icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Social_Media/Howcast.png}
+图标DD: &icon_DD { icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Social_Media/Spotify.png}
+图标EE: &icon_EE { icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Social_Media/SoundCloud.png}
+图标01: &icon_01 { icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Airport.png}
+图标02: &icon_02 { icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ChatGPT.png}
+图标03: &icon_03 { icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Social_Media/Telegram.png}
+图标04: &icon_04 { icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Social_Media/GitHub.png}
+图标05: &icon_05 { icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Google_Suite/Google.png}
+图标06: &icon_06 { icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Google_Suite/YouTube.png}
+图标07: &icon_07 { icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Universal/Game.png}
+图标08: &icon_08 { icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Google_Suite/Browser.png}
+图标09: &icon_09 { icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Google_Suite/Admin.png}
+图标10: &icon_10 { icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Loop.png}
+图标11: &icon_11 { icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Google_Suite/Photos.png}
+
+配置use: &use     {use: [合租机场, 亏本机场, 极速机场, 泡泡DOG, CF节点]}
+配置usetest: &usetest {type: url-test, url: https://www.gstatic.com/generate_204, interval: 300,tolerance: 80 , filter: "^(?!.*(倍|套餐|重置|剩余|到期|x|X)).*$"}
+配置测速: &url {url: https://www.gstatic.com/generate_204, interval: 300,tolerance: 80}
+配置proxiesxxall: &proxiesxxall {proxies: [🇭🇰HK香港, 🇺🇸US美国, 🇸🇬SG新加坡, 🇯🇵JP日本, 🇹🇼TW台湾, 🇰🇷KR韩国, 🇬🇧UK英国, 🇩🇪DE德国, 🇫🇷FR法国, 🇨🇦CA加拿大, 🇦🇺AU澳大利亚]}
+配置proxiesxxgpt: &proxiesxxgpt {proxies: [🇺🇸US美国, 🇬🇧UK英国, 🇩🇪DE德国, 🇫🇷FR法国, 🇨🇦CA加拿大, 🇦🇺AU澳大利亚]}
+配置proxiesmatch: &proxiesmatch {proxies: [🔄自动兜底, 🚀直连访问, ♻️手动选择, 🇭🇰HK香港, 🇺🇸US美国, 🇸🇬SG新加坡, 🇯🇵JP日本, 🇹🇼TW台湾, 🇰🇷KR韩国, 🇬🇧UK英国, 🇩🇪DE德国, 🇫🇷FR法国, 🇨🇦CA加拿大, 🇦🇺AU澳大利亚]}
+配置proxiesdoudi: &proxiesdoudi {proxies: [🇭🇰HK香港, 🇺🇸US美国, 🇸🇬SG新加坡, 🇯🇵JP日本, 🇹🇼TW台湾, 🇰🇷KR韩国, 🇬🇧UK英国, 🇩🇪DE德国, 🇫🇷FR法国, 🇨🇦CA加拿大, 🇦🇺AU澳大利亚]}
+
+proxy-groups:
+  - {name: ♻️手动选择,type: select, <<: [*proxiesxxall, *icon_01]}
+  - {name: ChatGPT,type: select, <<: [*proxiesxxgpt, *icon_02]}
+  - {name: Telegram, type: select, <<: [*proxiesmatch, *icon_03]}
+  - {name: GitHub, type: select, <<: [*proxiesmatch, *icon_04]}
+  - {name: 谷歌服务, type: select, <<: [*proxiesmatch, *icon_05]}
+  - {name: YouTuBe, type: select, <<: [*proxiesmatch, *icon_06]}
+  - {name: Game游戏, type: select, <<: [*proxiesmatch, *icon_07]}
+  - {name: DNS服务, type: select, <<: [*proxiesmatch, *icon_08]}
+  - {name: 最终MACH, type: select, <<: [*proxiesmatch, *icon_09]}
+  - {name: 🔄自动兜底, type: url-test, <<: [*proxiesdoudi, *icon_10]}
+##下边是具体的节点，上边是整理的分组
+  - {name: 🇭🇰HK香港, include-all: true, type: url-test, <<: [ *url, *hk]}
+  - {name: 🇺🇸US美国, type: select, <<: [ *url, *us, *use], proxies: [手动-美国-GPT]}
+  - {name: 🇸🇬SG新加坡, type: select, <<: [ *url, *sg, *use]}
+  - {name: 🇯🇵JP日本, type: url-test, <<: [ *url, *jp, *use]}
+  - {name: 🇹🇼TW台湾, type: url-test, <<: [ *url, *tw, *use]}
+  - {name: 🇰🇷KR韩国, type: url-test, <<: [ *url, *kr, *use]}
+  - {name: 🇬🇧UK英国, type: url-test, <<: [ *url, *uk, *use]}
+  - {name: 🇩🇪DE德国, type: url-test, <<: [ *url, *de, *use]}
+  - {name: 🇫🇷FR法国, type: url-test, <<: [ *url, *fr, *use]}
+  - {name: 🇨🇦CA加拿大, type: url-test, <<: [ *url, *ca, *use]}
+  - {name: 🇦🇺AU澳大利亚,type: url-test, <<: [ *url, *au, *use]}
+  - {name: 🇨🇳CN中国, type: url-test, <<: [ *url, *cn, *use]}
+  - {name: ⁉️其他节点, type: url-test, <<: [ *url, *qt, *use]}
+  - {name: 🚀直连访问, type: select, proxies: [DIRECT], <<: *icon_11}
+  - {name: 合租机场, <<: [*usetest, *icon_AA], use: [合租机场]}
+  - {name: 亏本机场, <<: [*usetest, *icon_BB], use: [亏本机场]}
+  - {name: 极速机场, <<: [*usetest, *icon_CC], use: [极速机场]}
+  - {name: 泡泡DOG, <<: [*usetest, *icon_DD], use: [泡泡DOG]}
+  - {name: CF节点, <<: [*usetest, *icon_EE], use: [CF节点]}
+
+rule-anchor:
+ip: &ip {type: http, interval: 18000, behavior: ipcidr, format: yaml}
+classical: &classical {type: http, interval: 18000, behavior: classical, format: yaml}
+domain: &domain {type: http, interval: 18000, behavior: domain, format: yaml}
+rule-providers:
+  wanxin-direct:
+    <<: *classical
+    url: "https://raw.githubusercontent.com/xinxinenjoy/clash-rules/refs/heads/main/wanxin-direct.yaml"
+    path: 配置/wanxin-direct.yaml
+  wanxin-proxy:
+    <<: *classical
+    url: "https://raw.githubusercontent.com/xinxinenjoy/clash-rules/refs/heads/main/wanxin-proxy.yaml"
+    path: 配置/wanxin-proxy.yaml
+  Loyalsoldier-direct:
+    <<: *domain
+    url: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    path: 配置/Loyalsoldier-direct.yaml
+  Loyalsoldier-proxy:
+    <<: *domain
+    url: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    path: 配置/Loyalsoldier-proxy.yaml
+  Loyalsoldier-reject:
+    <<: *domain
+    url: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    path: 配置/Loyalsoldier-reject.yaml
+
+rules:
+  # ===== 本地 / 私有 =====
+  - GEOIP,lan,🚀直连访问,no-resolve
+  - GEOSITE,private,DIRECT
+  # ===== 用户自定义 =====
+  - RULE-SET,wanxin-direct,🚀直连访问
+  - RULE-SET,wanxin-proxy,♻️手动选择
+  # ===== DNS服务 =====
+  - DOMAIN-SUFFIX,clashverge.dev,DNS服务
+  - DOMAIN-SUFFIX,cloudflare-dns.com,DNS服务
+  - DOMAIN-SUFFIX,dns.google,DNS服务
+  - DOMAIN-SUFFIX,quad9.net,DNS服务
+  # ===== 精确域名 =====
+  - GEOSITE,openai,ChatGPT
+  - DOMAIN-SUFFIX,suno.ai,ChatGPT
+  - DOMAIN-KEYWORD,suno,ChatGPT
+  - GEOSITE,telegram,Telegram
+  - GEOSITE,github,GitHub
+  - GEOSITE,youtube,YouTuBe
+  - GEOSITE,google,谷歌服务
+  # ===== 拦截 =====
+  - RULE-SET,Loyalsoldier-reject,REJECT
+  - GEOSITE,category-ads-all,REJECT
+  # ===== GEOIP 精准兜底 =====
+  - GEOIP,telegram,Telegram,no-resolve
+  - GEOIP,google,谷歌服务,no-resolve
+  - GEOIP,twitter,🔄自动兜底,no-resolve
+  - GEOIP,netflix,🔄自动兜底,no-resolve
+  - GEOIP,facebook,🔄自动兜底,no-resolve
+  # ===== 游戏 =====
+  - GEOSITE,cn,🚀直连访问
+  - GEOSITE,category-games-cn,🚀直连访问
+  - GEOSITE,category-games@cn,🚀直连访问
+  - GEOSITE,category-game-platforms-download,🚀直连访问
+  - GEOSITE,category-games,Game游戏
+  # ===== 通用直连 =====
+  - RULE-SET,Loyalsoldier-direct,🚀直连访问
+  - GEOIP,cn,DIRECT,no-resolve
+  # ===== 代理兜底 =====
+  - RULE-SET,Loyalsoldier-proxy,♻️手动选择
+  # ===== PT =====
+  - GEOSITE,category-public-tracker,🚀直连访问
+  - GEOSITE,category-pt,🚀直连访问
+  # ===== 最终 =====
+  - MATCH,最终MACH
