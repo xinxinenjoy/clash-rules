@@ -4,7 +4,7 @@ Loon配置.conf
 OpenClash配置.yaml
 
 # WorkBuddy AI 项目级目录（若本目录被当 workspace 打开）
-.workbuddy-ai/
+.workbuddy/
 
 # OS 垃圾
 .DS_Store
