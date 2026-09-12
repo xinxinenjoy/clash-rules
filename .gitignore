@@ -1,3 +1,22 @@
+# 个人订阅配置（含敏感订阅链接，不入 git）
 ClashVerge配置.yaml
 Loon配置.conf
 OpenClash配置.yaml
+
+# WorkBuddy AI 项目级目录（若本目录被当 workspace 打开）
+.workbuddy-ai/
+
+# OS 垃圾
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# 临时
+*.tmp
+*.bak
+*.log
