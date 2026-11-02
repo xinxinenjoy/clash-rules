@@ -2,6 +2,8 @@
 ClashVerge配置.yaml
 Loon配置.conf
 OpenClash配置.yaml
+v2rayN黑名单.json
+v2rayN绕过大陆.json
 
 # WorkBuddy AI 项目级目录（若本目录被当 workspace 打开）
 .workbuddy/
