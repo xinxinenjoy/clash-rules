@@ -1,53 +1,66 @@
+# ——— Loon 节点筛选备份（NameRegex / FilterKey）· 2026-11-02 ———
+# 用法：把「组名」下面那行正则整段粘进 Loon 的 FilterKey；icon 行只作配色参考，不用粘。
+# 各组共用同一个「信息行拦截」前缀（模板，不要单独用）：
+#   ^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月)\b)).*(<国家关键词>).*
+#
+# 四条约定：
+# 1) 0.1 倍率节点是主动排除的，不是漏配（低倍率多有限速/超售），别顺手删掉这一段。
+# 2) 短国家码（HK/US/SG/DE…）一律写成 (?:^|[^A-Za-z])XX(?![A-Za-z]) —— 前后不能紧挨英文字母。
+#    否则 RUSSIA→美国、UKRAINE→英国、FRANKFURT→法国、DENVER→德国、CALIFORNIA→加拿大，全部串组。
+#    CN 额外写成 (?![A-Za-z0-9])，避免「CN2 GIA」线路名把美国节点也拖进中国组。
+# 3) 大小写都列了（HK|hk，不靠引擎的 (?i)），换机场不至于因为大小写就掉组。
+# 4) 尺寸/流量判定结尾有 \b：没有它，「CN2 GIA」里的「2 G」会被当成流量信息，整个节点被踢出所有组。
+
 香港节点:
-^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇭🇰|香港|hk|HK|HKG|HongKong|Hong-Kong|Hong_Kong).*
-icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Hong_Kong.png }
+^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月)\b)).*(🇭🇰|香港|(?:^|[^A-Za-z])(?:HKG|hkg|HK|hk)(?![A-Za-z])|Hong[ _-]?Kong).*
+icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Hong_Kong.png
 
 美国节点:
-^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|us|US|USA|United-States|United_States|UnitedStates).*
-icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/United_States.png}
+^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月)\b)).*(🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|丹佛|Denver|加州|California|纽约|New York|迈阿密|Miami|亚特兰大|Atlanta|华盛顿|阿什本|Ashburn|波士顿|休斯顿|(?:^|[^A-Za-z])(?:USA?|usa?)(?![A-Za-z])|United[ _-]?States|UnitedStates).*
+icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/United_States.png
 
 新加坡节点:
-^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇸🇬|新加坡|狮|sg|SG|Singapore).*
-icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Singapore.png}
+^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月)\b)).*(🇸🇬|新加坡|狮城|狮|(?:^|[^A-Za-z])(?:SGP|sgp|SG|sg)(?![A-Za-z])|Singapore).*
+icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Singapore.png
 
 日本节点:
-^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇯🇵|日本|川日|东京|大阪|泉日|埼|jp|JP|Japan).*
-icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Japan.png}
+^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月)\b)).*(🇯🇵|日本|川日|东京|大阪|泉日|埼|名古屋|北海道|(?:^|[^A-Za-z])(?:JPN|jpn|JP|jp)(?![A-Za-z])|Japan).*
+icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Japan.png
 
 台湾节点:
-^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇹🇼|台湾|台灣|tw|TW|Taiwan).*
-icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Taiwan.png}
+^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月)\b)).*(🇹🇼|台湾|台灣|台北|新北|彰化|[Hh]inet|中华电信|中華電信|(?:^|[^A-Za-z])(?:TWN|twn|TW|tw)(?![A-Za-z])|Taiwan).*
+icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Taiwan.png
 
 韩国节点:
-^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇰🇷|韩国|韓國|kr|KR|Korea).*
-icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Korea.png}
+^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月)\b)).*(🇰🇷|韩国|韓國|首尔|首爾|(?:^|[^A-Za-z])(?:KOR|kor|KR|kr)(?![A-Za-z])|Korea).*
+icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Korea.png
 
 英国节点:
-^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇬🇧|英国|uk|UK|UnitedKingdom|United-Kingdom|United_Kingdom).*
-icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/United_Kingdom.png}
+^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月)\b)).*(🇬🇧|英国|英國|伦敦|倫敦|曼彻斯特|(?:^|[^A-Za-z])(?:GBR|gbr|UK|uk)(?![A-Za-z])|United[ _-]?Kingdom).*
+icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/United_Kingdom.png
 
 德国节点:
-^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇩🇪|德国|德國|de|DE|Germany).*
-icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Germany.png}
+^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月)\b)).*(🇩🇪|德国|德國|法兰克福|Frankfurt|柏林|Berlin|(?:^|[^A-Za-z])(?:DEU|deu|DE|de)(?![A-Za-z])|Germany).*
+icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Germany.png
 
 法国节点:
-^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇫🇷|法国|法國|fr|FR|France).*
-icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/France.png}
+^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月)\b)).*(🇫🇷|法国|法國|巴黎|Paris|(?:^|[^A-Za-z])(?:FRA|fra|FR|fr)(?![A-Za-z])|France).*
+icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/France.png
 
 加大节点:
-^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇨🇦|加拿大|ca|CA|Canada).*
-icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Canada.png}
+^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月)\b)).*(🇨🇦|加拿大|多伦多|Toronto|温哥华|Vancouver|蒙特利尔|(?:^|[^A-Za-z])(?:CAN|can|CA|ca)(?![A-Za-z])|Canada).*
+icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Canada.png
 
 澳大节点:
-^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇦🇺|澳大利亚|澳洲|au|AU|Australia).*
-icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Australia.png}
+^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月)\b)).*(🇦🇺|澳大利亚|澳洲|悉尼|Sydney|墨尔本|Melbourne|(?:^|[^A-Za-z])(?:AUS|aus|AU|au)(?![A-Za-z])|Australia).*
+icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Rounded_Rectangle/Australia.png
 
 中国节点:
-^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*(🇨🇳|CN|中国|China|大陆|内地).*
-icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/cn.svg}
+^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月)\b)).*(🇨🇳|中国|China|大陆|内地|(?:^|[^A-Za-z])(?:CN|cn)(?![A-Za-z0-9])).*
+icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/cn.svg
 
+# 其他节点 = 上面 12 个国家/地区全排除后剩下的（含流量信息行）。排除串必须和国家组保持同步，
+# 少写一个关键词，那个节点就会在两个组里同时出现。
 其他节点:
-^(?:(?!香港|HK|Hong Kong|剩余|套餐|美国|US|United States|新加坡|SG|Singapore|日本|JP|Japan|台湾|TW|Taiwan|韩国|KR|Korea|英国|UK|United Kingdom|德国|DE|Germany|法国|FR|France|加拿大|CA|Canada|澳大利亚|AU|Australia).)*$
- icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Google_Suite/Drive.png}
-筛选：
-^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月))).*
+^(?!.*(?:\b(?:0\.\d+|\d+\.\d+|[2-9]\d*)\s*[xX×倍]\b|\b[xX×]\s*(?:0\.\d+|\d+\.\d+|[2-9]\d*)\b|流量|剩余|用量|到期|过期|重置|套餐|包月|年付|\d+\s*(?:G|T|天|月)\b|🇭🇰|香港|(?:^|[^A-Za-z])(?:HKG|hkg|HK|hk)(?![A-Za-z])|Hong[ _-]?Kong|🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|丹佛|Denver|加州|California|纽约|New York|迈阿密|Miami|亚特兰大|Atlanta|华盛顿|阿什本|Ashburn|波士顿|休斯顿|(?:^|[^A-Za-z])(?:USA?|usa?)(?![A-Za-z])|United[ _-]?States|UnitedStates|🇸🇬|新加坡|狮城|狮|(?:^|[^A-Za-z])(?:SGP|sgp|SG|sg)(?![A-Za-z])|Singapore|🇯🇵|日本|川日|东京|大阪|泉日|埼|名古屋|北海道|(?:^|[^A-Za-z])(?:JPN|jpn|JP|jp)(?![A-Za-z])|Japan|🇹🇼|台湾|台灣|台北|新北|彰化|[Hh]inet|中华电信|中華電信|(?:^|[^A-Za-z])(?:TWN|twn|TW|tw)(?![A-Za-z])|Taiwan|🇰🇷|韩国|韓國|首尔|首爾|(?:^|[^A-Za-z])(?:KOR|kor|KR|kr)(?![A-Za-z])|Korea|🇬🇧|英国|英國|伦敦|倫敦|曼彻斯特|(?:^|[^A-Za-z])(?:GBR|gbr|UK|uk)(?![A-Za-z])|United[ _-]?Kingdom|🇩🇪|德国|德國|法兰克福|Frankfurt|柏林|Berlin|(?:^|[^A-Za-z])(?:DEU|deu|DE|de)(?![A-Za-z])|Germany|🇫🇷|法国|法國|巴黎|Paris|(?:^|[^A-Za-z])(?:FRA|fra|FR|fr)(?![A-Za-z])|France|🇨🇦|加拿大|多伦多|Toronto|温哥华|Vancouver|蒙特利尔|(?:^|[^A-Za-z])(?:CAN|can|CA|ca)(?![A-Za-z])|Canada|🇦🇺|澳大利亚|澳洲|悉尼|Sydney|墨尔本|Melbourne|(?:^|[^A-Za-z])(?:AUS|aus|AU|au)(?![A-Za-z])|Australia|🇨🇳|中国|China|大陆|内地|(?:^|[^A-Za-z])(?:CN|cn)(?![A-Za-z0-9]))).*
+icon: https://fastly.jsdelivr.net/gh/Semporia/Hand-Painted-icon@master/Google_Suite/Drive.png
